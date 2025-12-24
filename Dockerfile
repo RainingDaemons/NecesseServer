@@ -22,7 +22,8 @@ RUN cd steamcmd
 RUN echo "Installing SteamCMD..."
 RUN wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz && tar -xvzf steamcmd_linux.tar.gz && rm steamcmd_linux.tar.gz
 RUN echo "Installing Necesse Dedicated Server..."
-RUN ./steamcmd.sh +login anonymous +force_install_dir /home/steam/necesse/ +app_update 1169370 +quit
+RUN ./steamcmd.sh +force_install_dir /home/steam/necesse/ +quit
+RUN ./steamcmd.sh +login anonymous +app_update 1169370 +quit
 RUN echo "Copying scripts..."
 # Copy the script to the container
 COPY run_server.sh /home/steam/necesse/
