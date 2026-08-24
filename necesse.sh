@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 source <(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/misc/build.func)
-# Copyright (c) 2021-2026 community-scripts ORG
+# Copyright (c) 2021-2026 community-scripts.org
 # Author: RainingDaemons
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://necessegame.com/ | Github: https://github.com/RainingDaemons/NecesseServer
@@ -9,7 +9,7 @@ APP="Necesse"
 var_tags="${var_tags:-game;steam}"
 var_cpu="${var_cpu:-2}"
 var_ram="${var_ram:-2048}"
-var_disk="${var_disk:-8}"
+var_disk="${var_disk:-10}"
 var_os="${var_os:-debian}"
 var_version="${var_version:-12}"
 var_arm64="${var_arm64:-no}"

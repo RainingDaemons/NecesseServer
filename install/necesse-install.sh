@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2021-2026 community-scripts ORG
+# Copyright (c) 2021-2026 community-scripts.org
 # Author: RainingDaemons
 # License: MIT | https://github.com/community-scripts/ProxmoxVE/raw/main/LICENSE
 # Source: https://necessegame.com/ | Github: https://github.com/RainingDaemons/NecesseServer
@@ -38,8 +38,10 @@ msg_info "Setting up Necesse Server"
 mkdir -p /home/steam/necesse
 curl -fsSL -o /home/steam/necesse/config.toml https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/config.toml
 curl -fsSL -o /home/steam/necesse/run_server.sh https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/run_server.sh
+curl -fsSL -o /home/steam/necesse/check.sh https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/check.sh
 curl -fsSL -o /home/steam/necesse/download_workshop.py https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/download_workshop.py
 chmod +x /home/steam/necesse/run_server.sh
+chmod +x /home/steam/necesse/check.sh
 mkdir -p /home/steam/necesse_saves
 chown -R steam:steam /home/steam/necesse /home/steam/necesse_saves
 msg_ok "Set up Necesse Server"
