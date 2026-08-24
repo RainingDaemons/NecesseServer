@@ -1,18 +1,14 @@
 #!/bin/bash
 # run_server.sh
-# Necesse - Server Run Config
-#
-# author RainingDaemons
-# date 16-07-2024
-# website https://github.com/RainingDaemons
-world_name="servername"
-password="123456"
-server_port="14159"
-player_slots="10"
-server_ip="127.0.0.1"
-server_owner="username"
-necesse_dir="/home/steam/necesse_saves"
-modded_server="0" # Set 1 if the server will use mods
+# Necesse Server Run Config for Docker
+world_name=$(grep '^world_name' config.toml | cut -d'=' -f2 | tr -d ' "\r')
+password=$(grep '^password' config.toml | cut -d'=' -f2 | tr -d ' "\r')
+server_port=$(grep '^server_port' config.toml | cut -d'=' -f2 | tr -d ' "\r')
+player_slots=$(grep '^player_slots' config.toml | cut -d'=' -f2 | tr -d ' "\r')
+server_ip=$(grep '^server_ip' config.toml | cut -d'=' -f2 | tr -d ' "\r')
+server_owner=$(grep '^server_owner' config.toml | cut -d'=' -f2 | tr -d ' "\r')
+necesse_dir=$(grep '^necesse_dir' config.toml | cut -d'=' -f2 | tr -d ' "\r')
+modded_server=$(grep '^modded_server' config.toml | cut -d'=' -f2 | cut -d'#' -f1 | tr -d ' "\r')
 
 # Make sure download dir exists
 mkdir -p "$necesse_dir"

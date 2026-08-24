@@ -1,9 +1,5 @@
 # download_workshop.py
-# Necesse - Workshop Items Downloader
-#
-# author RainingDaemons
-# date 16-07-2024
-# website https://github.com/RainingDaemons
+# Workshop Items Downloader for Necesse Server
 import os
 import shutil
 import subprocess

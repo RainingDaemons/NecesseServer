@@ -9,11 +9,10 @@ This repository is intended to provide some useful scripts for setting up your o
 ## Prerequisites
 
 Some of the requirements needed to run the scripts are:
-- Have Docker installed on your operating system
-- It is recommended to install Docker Desktop to monitor if the containers are launched correctly.
+- [Docker](https://www.docker.com/) available in your system
+- [Python](https://www.python.org/) 3.11+
+- It is recommended to install [Docker Desktop](https://www.docker.com/products/docker-desktop/) to monitor if the containers are launched correctly.
 - Use some Virtual LAN service such as Hamachi
-
-In particular, the "start.bat" script is to automatically start the Docker container on a Windows operating system but can be transcribed to Linux systenms.
 
 ---
 
@@ -21,22 +20,34 @@ In particular, the "start.bat" script is to automatically start the Docker conta
 
 The following order is recommended for the container to be launched correctly:
 
-1. Edit the file `run_server.sh` since this file will be the server launch config. Where:
+1. Edit the server configuration file named `config.toml` and fill this required variables:
 - **world_name:** will be the name of the world to be created.
 - **password:** is the password that will be used to connect to the server, it can be left empty if it is not required.
 - **player_slots:** is the maximum amount of players that can enter the server.
 - **server_owner:** any player that enters with this name will be the owner of the server, it can be left empty if not required.
+- **win_username:** put your windows username (only windows machines)
+- **linux_username:** put your linux username (only linux machines)
 
-2. Install the `Dockerfile`, if this file is in your desktop you can launch it from powershell with the command:
+2. Execute the following script to automatically create the Necesse image in your Docker:
 ```bash
-docker build -t necesse C:\Users\your-username\Desktop\docker\necesse
+python create_dockerfile.py
 ```
 
-> NOTE: Replace `your-username` with your real username from Windows
-
-3. Once installed, create a folder to save the world saves, for example you could create a folder called "necesse_server" and inside it create another folder called "saves" on your desktop, if your username is "user" then you have to edit `start.bat` like this:
+3. Once installed, create a folder named "saves" inside "NecesseServer" in your desktop. Check if the server is setup correctly running the script:
 ```bash
-docker run --rm -v "C:/Users/user/Desktop/necesse_server/saves:/home/steam/necesse_saves" -p 14159:14159/udp -it necesse
+python check.py
 ```
 
-4. Done, you should now be able to launch the server automatically by running the script `start.bat`.
+4. Now you should be able to launch the server automatically by running the script:
+```bash
+python start.py
+```
+
+## Clean installation
+
+In case you need to clean old Necesse Docker images run the script:
+```bash
+python clean_dockerfile.py
+```
+
+And then reinstall with `create_dockerfile.py` script
