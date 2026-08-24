@@ -2,31 +2,40 @@
 # check.sh
 # Server setup checker for Necesse Server
 configPath="$(dirname "$0")/../config.toml"
-linuxUsername=$(grep '^linux_username' "$configPath" | cut -d'=' -f2 | tr -d ' "')
+linux_dir=$(grep '^linux_dir' "$configPath" | cut -d'=' -f2 | tr -d ' "')
 
-if [ -z "$linuxUsername" ]; then
-    linuxUsername=$(whoami)
+if [ -z "$linux_dir" ] || [ "$linux_dir" = "..." ]; then
+    linux_dir="/home/$(whoami)/Desktop/NecesseServer"
+    echo "linux_dir is not set in config.toml, using default dir: $linux_dir"
+    sed -i "s|^linux_dir[[:space:]]*=.*|linux_dir = \"$linux_dir\"|" "$configPath"
 fi
 
-necesseFolder="/home/$linuxUsername/Documents/NecesseServer"
-savesFolder="$necesseFolder/saves"
+necesseFolder="$linux_dir"
+serverFolder="$necesseFolder/server"
 
 passed=0
-total=3
+total=4
+
+if [ -n "$linux_dir" ]; then
+    echo "[✓] linux_dir configured"
+    passed=$((passed + 1))
+else
+    echo "[x] linux_dir configured"
+fi
 
 if [ -d "$necesseFolder" ]; then
     echo "[✓] NecesseServer folder"
     passed=$((passed + 1))
 
-    if [ ! -d "$savesFolder" ]; then
-        mkdir -p "$savesFolder"
-        echo "Created saves folder: $savesFolder"
+    if [ ! -d "$serverFolder" ]; then
+        mkdir -p "$serverFolder"
+        echo "Created server folder: $serverFolder"
     fi
-    echo "[✓] saves folder"
+    echo "[✓] server folder"
     passed=$((passed + 1))
 else
     echo "[x] NecesseServer folder"
-    echo "[x] saves folder"
+    echo "[x] server folder"
 fi
 
 if docker image inspect necesse >/dev/null 2>&1; then

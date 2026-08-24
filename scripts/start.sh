@@ -3,13 +3,10 @@
 # Automatic Necesse Server Starter
 script_dir="$(cd "$(dirname "$0")/.." && pwd)"
 config="$script_dir/config.toml"
-linux_username=$(grep '^linux_username' "$config" | cut -d'=' -f2 | tr -d ' "\r' | head -1)
-
-if [ -z "$linux_username" ]; then
-    linux_username=$(whoami)
-fi
+linux_dir=$(grep '^linux_dir' "$config" | cut -d'=' -f2 | tr -d ' "\r' | head -1)
+necesse_dir=$(grep '^necesse_dir' "$config" | cut -d'=' -f2 | tr -d ' "\r' | head -1)
 
 docker run --rm \
-    -v "/home/$linux_username/Desktop/NecesseServer/saves:/home/steam/necesse_saves" \
+    -v "$linux_dir/server:$necesse_dir" \
     -v "$config:/home/steam/necesse/config.toml" \
     -p 14159:14159/udp -it necesse

@@ -2,13 +2,19 @@
 # Automatic Necesse Server Starter
 $configPath = Join-Path (Split-Path $MyInvocation.MyCommand.Path) "..\config.toml"
 $config = Get-Content $configPath -Raw
-$winUsername = ""
+$winDir = ""
 foreach ($line in ($config -split "`n")) {
-    if ($line -match '^\s*win_username\s*=\s*"([^"]*)"') {
-        $winUsername = $Matches[1].Trim()
+    if ($line -match '^\s*win_dir\s*=\s*"([^"]*)"') {
+        $winDir = $Matches[1].Trim()
         break
     }
 }
-$username = if ($winUsername) { $winUsername } else { [Environment]::UserName }
+$necesseDir = ""
+foreach ($line in ($config -split "`n")) {
+    if ($line -match '^\s*necesse_dir\s*=\s*"([^"]*)"') {
+        $necesseDir = $Matches[1].Trim()
+        break
+    }
+}
 $configFull = (Resolve-Path $configPath).Path -replace '\\', '/'
-docker run --rm -v "C:/Users/$username/Desktop/NecesseServer/saves:/home/steam/necesse_saves" -v "${configFull}:/home/steam/necesse/config.toml" -p 14159:14159/udp -it necesse
+docker run --rm -v "$winDir/server:$necesseDir" -v "${configFull}:/home/steam/necesse/config.toml" -p 14159:14159/udp -it necesse

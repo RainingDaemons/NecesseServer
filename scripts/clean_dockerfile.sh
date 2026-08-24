@@ -2,9 +2,8 @@
 # clean_dockerfile.sh
 # Completely remove the Necesse docker image, build cache, and local folder
 config="$(dirname "$0")/../config.toml"
-linux_username=$(grep '^linux_username' "$config" | cut -d'=' -f2 | tr -d ' "\r')
-username="${linux_username:-$(whoami)}"
-necesse_folder="/home/$username/Desktop/NecesseServer"
+linux_dir=$(grep '^linux_dir' "$config" | cut -d'=' -f2 | tr -d ' "\r')
+necesse_folder="$linux_dir"
 
 echo "Removing running Necesse containers..."
 docker ps -aq --filter "ancestor=necesse" | xargs -r docker rm -f

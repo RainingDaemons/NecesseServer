@@ -2,15 +2,14 @@
 # Completely remove the Necesse docker image, build cache, and local folder
 $configPath = Join-Path (Split-Path $MyInvocation.MyCommand.Path) "..\config.toml"
 $config = Get-Content $configPath -Raw
-$winUsername = ""
+$winDir = ""
 foreach ($line in ($config -split "`n")) {
-    if ($line -match '^\s*win_username\s*=\s*"([^"]*)"') {
-        $winUsername = $Matches[1].Trim()
+    if ($line -match '^\s*win_dir\s*=\s*"([^"]*)"') {
+        $winDir = $Matches[1].Trim()
         break
     }
 }
-$username = if ($winUsername) { $winUsername } else { [Environment]::UserName }
-$necesseFolder = "C:\Users\$username\Desktop\NecesseServer"
+$necesseFolder = $winDir
 
 Write-Host "Removing running Necesse containers..."
 docker ps -aq --filter "ancestor=necesse" | ForEach-Object { docker rm -f $_ }
