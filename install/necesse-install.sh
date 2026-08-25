@@ -16,8 +16,14 @@ update_os
 msg_info "Installing Dependencies"
 $STD dpkg --add-architecture i386
 $STD apt-get update
-$STD apt-get install -y ca-certificates wget default-jre python3 python3-pip lib32gcc-s1 lib32stdc++6 lib32z1
+$STD apt-get install -y ca-certificates wget default-jre python3 python3-pip lib32gcc-s1 lib32stdc++6 lib32z1 ufw
 msg_ok "Installed Dependencies"
+
+msg_info "Setting up Firewall"
+$STD ufw enable
+$STD ufw allow 14159/tcp
+$STD ufw allow 14159/udp
+msg_ok "Set up Firewall"
 
 msg_info "Creating steam user"
 useradd -m -s /bin/bash steam
