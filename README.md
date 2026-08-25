@@ -22,9 +22,17 @@ Edit the server configuration file named `config.toml` and fill this required va
 - **server_owner:** any player that enters with this name will be the owner of the server, it can be left empty if not required.
 - **linux_username:** put your proxmox LXC username
 
+## Restart server service
+
+If changes were made in server config or server version was update, execute the following commands:
+```bash
+systemctl daemon-reload
+systemctl restart necesse.service
+```
+
 ## Playing with Mods
 
-Inside "server" folder, create a file named workshop.txt with the IDs of the mods you want to download, for example:
+Inside "server" folder, create a file named `workshop.txt` with the IDs of the mods you want to download, for example:
 ```text
 # Specify 1 workshop item id per line
 2824816332
