@@ -42,12 +42,14 @@ msg_ok "Installed Necesse Dedicated Server"
 
 msg_info "Setting up Necesse Server"
 mkdir -p /home/steam/necesse
-curl -fsSL -o /home/steam/necesse/config.toml https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/config.toml
-curl -fsSL -o /home/steam/necesse/run_server.sh https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/run_server.sh
-curl -fsSL -o /home/steam/necesse/update_server.sh https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/update_server.sh
-curl -fsSL -o /home/steam/necesse/check.sh https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/check.sh
-curl -fsSL -o /home/steam/necesse/download_mods.sh https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/download_mods.sh
-curl -fsSL -o /home/steam/necesse/download_workshop.py https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/download_workshop.py
+$STD git clone --depth 1 -b lxc https://github.com/RainingDaemons/NecesseServer.git /tmp/NecesseServer
+cp /tmp/NecesseServer/config.toml /home/steam/necesse/config.toml
+cp /tmp/NecesseServer/run_server.sh /home/steam/necesse/run_server.sh
+cp /tmp/NecesseServer/update_server.sh /home/steam/necesse/update_server.sh
+cp /tmp/NecesseServer/check.sh /home/steam/necesse/check.sh
+cp /tmp/NecesseServer/download_mods.sh /home/steam/necesse/download_mods.sh
+cp /tmp/NecesseServer/download_workshop.py /home/steam/necesse/download_workshop.py
+rm -rf /tmp/NecesseServer
 chmod +x /home/steam/necesse/run_server.sh
 chmod +x /home/steam/necesse/update_server.sh
 chmod +x /home/steam/necesse/check.sh
