@@ -16,7 +16,7 @@ mkdir -p "$necesse_dir/mods"
 
 # Download workshop items
 if [ "$modded_server" -eq 1 ]; then
-    python3 /home/steam/necesse/download_workshop.py
+    python3 /home/steam/necesse/download_mods.sh
 fi
 
 # Move to server directory
@@ -26,7 +26,7 @@ cd /home/steam/Steam/steamapps/common/Necesse\ Dedicated\ Server || {
 }
 
 # Run script
-java -jar Server.jar \
+java -Xms1G -Xmx3G -Djdk.attach.allowAttachSelf=true -jar Server.jar \
     -nogui \
     -world "$world_name" \
     -password "$password" \

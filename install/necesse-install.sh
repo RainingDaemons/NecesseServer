@@ -46,10 +46,12 @@ curl -fsSL -o /home/steam/necesse/config.toml https://raw.githubusercontent.com/
 curl -fsSL -o /home/steam/necesse/run_server.sh https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/run_server.sh
 curl -fsSL -o /home/steam/necesse/update_server.sh https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/update_server.sh
 curl -fsSL -o /home/steam/necesse/check.sh https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/check.sh
+curl -fsSL -o /home/steam/necesse/download_mods.sh https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/download_mods.sh
 curl -fsSL -o /home/steam/necesse/download_workshop.py https://raw.githubusercontent.com/RainingDaemons/NecesseServer/refs/heads/lxc/download_workshop.py
 chmod +x /home/steam/necesse/run_server.sh
 chmod +x /home/steam/necesse/update_server.sh
 chmod +x /home/steam/necesse/check.sh
+chmod +x /home/steam/necesse/download_mods.sh
 mkdir -p /home/steam/necesse_saves
 chown -R steam:steam /home/steam/necesse /home/steam/necesse_saves
 msg_ok "Set up Necesse Server"
