@@ -6,7 +6,6 @@ player_slots = "10"
 server_ip = "0.0.0.0"
 server_owner = "username"
 necesse_dir = "/home/steam/necesse_saves"
-modded_server = 0 # Set 1 if the server will use mods
 
 [windows]
 win_dir = "..."

@@ -32,7 +32,7 @@ systemctl restart necesse.service
 
 ## Playing with Mods
 
-Inside "server" folder, create a file named `workshop.txt` with the IDs of the mods you want to download, for example:
+Inside `/home/steam/necesse_saves` folder create a file named `workshop.txt` with the IDs of the mods you want to download, for example:
 ```text
 # Specify 1 workshop item id per line
 2824816332
@@ -41,5 +41,7 @@ Inside "server" folder, create a file named `workshop.txt` with the IDs of the m
 
 Then run the following script to autodownload your mods:
 ```bash
-python download_workshop.py
+./download_mods.sh
 ```
+
+Restart the server, now your mods will be automatically loaded

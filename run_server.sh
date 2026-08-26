@@ -8,16 +8,10 @@ player_slots=$(grep '^player_slots' config.toml | cut -d'=' -f2 | tr -d ' "\r')
 server_ip=$(grep '^server_ip' config.toml | cut -d'=' -f2 | tr -d ' "\r')
 server_owner=$(grep '^server_owner' config.toml | cut -d'=' -f2 | tr -d ' "\r')
 necesse_dir=$(grep '^necesse_dir' config.toml | cut -d'=' -f2 | tr -d ' "\r')
-modded_server=$(grep '^modded_server' config.toml | cut -d'=' -f2 | cut -d'#' -f1 | tr -d ' "\r')
 
 # Make sure download dir exists
 mkdir -p "$necesse_dir"
 mkdir -p "$necesse_dir/mods"
-
-# Download workshop items
-if [ "$modded_server" -eq 1 ]; then
-    python3 /home/steam/necesse/download_mods.sh
-fi
 
 # Move to server directory
 cd /home/steam/Steam/steamapps/common/Necesse\ Dedicated\ Server || {
